@@ -31,7 +31,7 @@ def scrape():
 
     #IMAGE
     
-    image_url='https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA19039_hires.jpg'
+    featured_image_url='https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA19039_hires.jpg'
     browser.visit(image_url)
 
     html = browser.html
@@ -43,9 +43,9 @@ def scrape():
 
     for article in articles:
         img= article['data-fancybox-href']
-        image_url= 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA19039_hires.jpg'+img
+        featured_image_url= 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA19039_hires.jpg'+img
 
-    mars_info["image"] = image_url
+    mars_info["image"] = featured_image_url
 
     #MARS WEATHER
     
@@ -80,7 +80,7 @@ def scrape():
     browser.visit(astro_url)
     soup = BeautifulSoup (html, 'html.parser')
      
-    for x in range(4):  
+    for x in range(4): 
         time.sleep(5)
         hemisphere = result.find('div', class_="description")
         title = hemisphere.h3.text
@@ -93,6 +93,5 @@ def scrape():
         hemisphere_dict = {}
         hemisphere_dict['title'] = title
         hemisphere_dict['img_url'] = image_url
-
 
     return mars_info
