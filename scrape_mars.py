@@ -1,4 +1,4 @@
-#DEPENDENCIES
+DEPENDENCIES
 from bs4 import BeautifulSoup
 import requests
 from splinter import Browser
@@ -67,9 +67,9 @@ def scrape():
     mars_facts_tables = pd.read_html(facts_url)
     mars_facts_df = mars_facts_tables[0]
     mars_facts_df.columns = ["Description", "Value"]
-    pd.read_html = mars_facts_df.to_html()
-    pd.read_html = pd.read_html.replace("\n"," ")
-    mars_info["Facts"]=pd.read_html
+    mars_facts_df.set_index('Description', inplace=True)
+    mars_facts_html=mars_facts_df.to_html()
+    mars_info['mars_facts_html'] = mars_facts_html
 
     
 
